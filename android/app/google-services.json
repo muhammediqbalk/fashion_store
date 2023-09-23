@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "856972967049",
+    "project_id": "fashionshop-4f5b8",
+    "storage_bucket": "fashionshop-4f5b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856972967049:android:da5410d3a0b3e717bb9a58",
+        "android_client_info": {
+          "package_name": "com.example.fashion_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxfNS-ypz2gwDJakp6HLaHn5bkZy1akPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
