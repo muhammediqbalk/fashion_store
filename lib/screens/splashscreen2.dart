@@ -111,7 +111,7 @@ class SplashScreen2 extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FashionLoging()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Fashionlogin()));
                     },
                     child: const Text(
                       "Sign In",
