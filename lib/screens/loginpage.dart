@@ -1,17 +1,31 @@
 import 'package:fashion_store/screens/registerpage.dart';
 import 'package:flutter/material.dart';
 
-class Fashionlogin extends StatelessWidget {
-  final eml = TextEditingController();
-  final pass = TextEditingController();
+import '../firebasehelper.dart';
+import 'homescreen/components/bottombar.dart';
+
+class Fashionlogin extends StatefulWidget {
+
 
   Fashionlogin({super.key});
 
   @override
+  State<Fashionlogin> createState() => _FashionloginState();
+}
+
+class _FashionloginState extends State<Fashionlogin> {
+  final eml = TextEditingController();
+
+  final pass = TextEditingController();
+
+  bool showpwd = true;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.only(top: 100),
+        padding: const EdgeInsets.only(top: 120),
         child: Column(
           children: [
             const SizedBox(
@@ -42,16 +56,29 @@ class Fashionlogin extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: TextField(
-                obscureText: true,
+                controller: pass,
+                obscureText: showpwd,
                 obscuringCharacter: "*",
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState (() {
+                          if (showpwd){
+                            showpwd = false;
+                          }else{
+                            showpwd = true;
+                          }
+                        });
+                      },
+                      icon: Icon(showpwd == true
+                          ? Icons.visibility
+                          : Icons.visibility_off_sharp)),
                   border:
                       OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                   hintText: "Password ",
                   labelText: "password",
-                  suffixIcon: const Icon(Icons.visibility_off_sharp),
                 ),
               ),
             ),
@@ -64,13 +91,26 @@ class Fashionlogin extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Center(
               child: SizedBox(
                 height: 50,
                 width: 350,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+    String username = eml.text.trim();
+    String password = pass.text.trim();
+
+    FireHelper().signIn(email:username,pass:password).then((value) {
+    if(value == null){
+    Navigator.of(context).push(MaterialPageRoute(
+    builder: (context)=>page1bn()));
+    }else{
+    ScaffoldMessenger.of(context).
+    showSnackBar(SnackBar(content: Text(value)));
+    }
+    });
+    },
                     style: ElevatedButton.styleFrom(
                         primary: Colors.brown,
                         shape: RoundedRectangleBorder(
@@ -78,9 +118,9 @@ class Fashionlogin extends StatelessWidget {
                     child: const Text("Sign In",style: TextStyle(fontSize: 15),)),
               ),
             ),
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             const Text("----------or sign in with----------"),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -93,12 +133,12 @@ class Fashionlogin extends StatelessWidget {
                     onPressed: () {}, icon: const Icon(Icons.facebook_outlined)),
               ],
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Row(
               children: [
-                   Padding(
-                     padding: const EdgeInsets.only(left: 85),
-                     child: Text("Already have an account?"),
+                   const Padding(
+                     padding: EdgeInsets.only(left: 85),
+                     child: Text("don't have an account?"),
                    ),
                 TextButton(
                   onPressed: () {
@@ -106,7 +146,7 @@ class Fashionlogin extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => FashionRegisteroage()));
                   },
                   child: const Text(
-                    "Sign In",
+                    "Sign Up",
                     style: TextStyle(
                       color: Colors.brown,
                       decoration: TextDecoration.underline,
