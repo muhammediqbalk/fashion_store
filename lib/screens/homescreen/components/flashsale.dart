@@ -11,9 +11,7 @@ class Page4 extends StatelessWidget {
       physics: const AlwaysScrollableScrollPhysics(),
 
       children: [
-        SizedBox(height: 5,),
-
-        SizedBox(height: 15,),
+        //SizedBox(height: 5),
         Row(
           children: [
             Text("Flash Sale",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),

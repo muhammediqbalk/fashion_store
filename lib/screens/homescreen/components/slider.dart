@@ -35,7 +35,7 @@ class _slidefasionState extends State<slidefasion> {
   Widget build(BuildContext context) {
 
     return
-      Container(height: 200,width: 300,
+      Container(height: 200,width: 400,
         child:
         CarouselSlider(
             items: _cliderimages.map((item) => Container(

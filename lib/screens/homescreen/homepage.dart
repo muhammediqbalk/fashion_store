@@ -17,21 +17,24 @@ class _MainHomeState extends State<MainHome> {
   int pageindex=0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
 
       body:
-      ListView(
-        shrinkWrap: true,
-        //physics: const ScrollPhysics(),
-        children: const [
-          AppbarHome(),
-          SizedBox(height: 16,),
-          slidefasion(),
-          Page3(),
-          Page4(),
-          SizedBox(height: 10,),
-          HomeTabBar(),
-        ],
+      SingleChildScrollView(
+        child: Column(
+          //shrinkWrap: true,
+          //physics: const ScrollPhysics(),
+          children: [
+            AppbarHome(),
+            SizedBox(height: 15,),
+            slidefasion(),
+            Page3(),
+            Page4(),
+            SizedBox(height: 10,),
+            HomeTabBar(),
+
+          ],
+        ),
       ),
     );
   }

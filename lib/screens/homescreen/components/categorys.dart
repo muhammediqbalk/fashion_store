@@ -7,11 +7,11 @@ class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      ListView(shrinkWrap: true,
+      ListView(
+        shrinkWrap: true,
        // physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
-          SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -19,8 +19,9 @@ class Page3 extends StatelessWidget {
               TextButton(onPressed: (){}, child: Text("See All",style: TextStyle(color: Colors.black),))
             ],
           ),
-          SizedBox(height: 10,),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 height: 60,width: 60,

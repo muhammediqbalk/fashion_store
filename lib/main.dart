@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   // Get.lazyPut(() => HomeAllProduct());
+
     return
       const MaterialApp(
         debugShowCheckedModeBanner: false,

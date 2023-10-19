@@ -26,7 +26,8 @@ class _page1bnState extends State<page1bn> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+      Scaffold(
         floatingActionButton:
         Padding(
           padding: const EdgeInsets.only(left: 35,),

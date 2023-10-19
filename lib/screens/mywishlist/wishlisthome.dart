@@ -56,7 +56,8 @@ class _WishTabBarState extends State<WishTabBar> {
                   Tab(
                     text: "   Top    ",
                   ),
-            ]),
+            ]
+            ),
                ),
           body: TabBarView(children: [
             WishAllProduct(),

@@ -1,72 +1,69 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
-import 'package:fashion_store/screens/mywishlist/wishlistpages/All.dart';
-import 'package:fashion_store/screens/mywishlist/wishlistpages/jakets.dart';
-import 'package:fashion_store/screens/mywishlist/wishlistpages/pant.dart';
-import 'package:fashion_store/screens/mywishlist/wishlistpages/sari.dart';
-import 'package:fashion_store/screens/mywishlist/wishlistpages/shirt.dart';
-import 'package:fashion_store/screens/mywishlist/wishlistpages/tshrt.dart';
+import 'package:fashion_store/screens/productscreens/product_category_screen/all_products.dart';
 import 'package:flutter/material.dart';
-
 
 class HomeTabBar extends StatefulWidget {
   const HomeTabBar({super.key});
 
   @override
-  State<HomeTabBar> createState() => _WishTabBarState();
+  State<HomeTabBar> createState() => _TabbarState();
 }
 
-class _WishTabBarState extends State<HomeTabBar> {
+class _TabbarState extends State<HomeTabBar> with SingleTickerProviderStateMixin {
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 6, vsync: this,initialIndex: 0)..addListener(() {
+
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      length: 6,
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: BackButton(
-              color: Colors.black
-          ),
-          title: Text("My Wishlist",style: TextStyle(fontSize: 20,color: Colors.black),),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          bottom: ButtonsTabBar(
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              radius: 20,
-              backgroundColor: Colors.brown,
-              unselectedBackgroundColor: Colors.white,
-              unselectedLabelStyle: TextStyle(color: Colors.black),
-              labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
-              tabs: [
-                Tab(
-                  text: "    All    ",
-                ),
-                Tab(
-                  text: "   Jacket   ",
-                ),
-                Tab(
-                  text: "   Shirt   ",
-                ),
-                Tab(
-                  text: "   Pant   ",
-                ),
-                Tab(
-                  text: "   T-Shirt   ",
-                ),
-                Tab(
-                  text: "   Top    ",
-                ),
-              ]),
-        ),
-        body: TabBarView(children: [
-          WishAllProduct(),
-          WishJaketsProduct(),
-          TShirtGrid(),
-          SariGrid(),
-          ShirtGrid(),
-          WishPantProduct(),
-        ]),
-      ),
-    );
-  }
+    return
+         Column(
+            children: [
+              TabBar(
+                  isScrollable: true,
+                  indicatorPadding: const EdgeInsets.all(10),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.black,
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                  labelPadding: const EdgeInsets.only(
+                      left: 30,right: 30,top: 10,bottom: 10
+                  ),
+                  indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.brown
+                  ),
+                  controller: _tabController,
+                  tabs: const [
+                    Text("ALL"),
+                    Text("Newest"),
+                    Text("Popular"),
+                    Text("Man"),
+                    Text("Woman"),
+                    Text("Kids"),
+
+                  ]),
+              SizedBox(
+                height: 750,
+                child: TabBarView(
+                    controller: _tabController,
+                    children:   [
+                      HomeAllProduct(),
+                      Text("All Item Will Display"),
+                      Text("Jacket Item Will Display"),
+                      Text("Shirt Item Will Display"),
+                      Text("Pant Item Will Display"),
+                      Text("T-Shirt Item Will Display"),
+                      // Text("Top Item Will Display"),
+                    ]),
+              )
+             ],
+
+        );
+    }
 }
